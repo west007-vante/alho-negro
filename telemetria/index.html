@@ -1,0 +1,70 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Telemetria · Alho Negro em Casa</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#0b1512;--pan:#10201b;--tx:#e6f2ec;--mut:#8fb3a4;--ok:#22c55e;--warn:#f59e0b;--bad:#ef4444;--acc:#7fe0b0;--line:#1e332c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.45 -apple-system,Segoe UI,Roboto,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid var(--line)}
+h1{font-size:16px;margin:0;font-weight:600;letter-spacing:.02em}.sub{color:var(--mut);font-size:12px}
+main{padding:16px 20px;display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{background:var(--pan);border:1px solid var(--line);border-radius:12px;padding:14px}
+.card h2{font-size:12px;color:var(--mut);margin:0 0 10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em}
+.funil{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.funil .st{background:#0d1a16;border-radius:8px;padding:10px;text-align:center}
+.st b{display:block;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}.st span{font-size:11px;color:var(--mut)}.st i{display:block;font-style:normal;font-size:11px;color:var(--acc)}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:6px 6px;border-bottom:1px solid var(--line)}th{color:var(--mut);font-weight:600}td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}.ok{background:var(--ok)}.bad{background:var(--bad)}.warn{background:var(--warn)}
+.tabs{display:flex;gap:6px;margin-bottom:10px}.tabs button{background:#0d1a16;border:1px solid var(--line);color:var(--tx);padding:5px 10px;border-radius:999px;cursor:pointer;font-size:12px}.tabs button.on{border-color:var(--acc);color:var(--acc)}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.kpi div{background:#0d1a16;border-radius:8px;padding:10px}.kpi b{font-size:20px;display:block;font-variant-numeric:tabular-nums}.kpi span{font-size:11px;color:var(--mut)}
+input{background:#0d1a16;border:1px solid var(--line);color:var(--tx);padding:6px 8px;border-radius:6px;width:110px}button.b{background:var(--acc);color:#052015;border:0;padding:7px 12px;border-radius:6px;font-weight:600;cursor:pointer}
+.gate{font-size:12px;color:var(--mut)}.gate b{color:var(--tx)}.alert{color:var(--warn)}
+#erro{color:var(--bad);padding:20px}
+</style></head><body>
+<header><div><h1>Alho Negro em Casa · telemetria ao vivo</h1><div class="sub" id="status">carregando…</div></div><div class="sub">atualiza a cada 10 s · fonte: página + Cakto + saúde</div></header>
+<div id="erro" hidden></div>
+<main id="app" hidden>
+ <section class="card" style="grid-column:1/-1">
+  <div class="tabs"><button data-j="hoje" class="on">Hoje</button><button data-j="24h">24 h</button><button data-j="7d">7 dias</button></div>
+  <div class="funil" id="funil"></div>
+ </section>
+ <section class="card"><h2>Dinheiro</h2><div class="kpi" id="kpi"></div>
+  <p class="gate" id="gates"></p>
+  <div style="margin-top:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="sub">Gasto Meta hoje (R$)</span><input id="gasto" type="number" step="0.01" placeholder="0,00"><button class="b" id="salvar">Gravar</button><span class="sub" id="gastoMsg"></span></div>
+ </section>
+ <section class="card"><h2>Saúde do sistema</h2><table><tbody id="saude"></tbody></table></section>
+ <section class="card"><h2>Por anúncio (7 dias)</h2><table><thead><tr><th>anúncio</th><th class="n">visitas</th><th class="n">checkout</th><th class="n">compras</th><th class="n">IC/visita</th></tr></thead><tbody id="anuncios"></tbody></table></section>
+ <section class="card"><h2>Últimos pedidos (Cakto)</h2><table><thead><tr><th>quando</th><th>evento</th><th>método</th><th class="n">valor</th><th>anúncio</th></tr></thead><tbody id="pedidos"></tbody></table></section>
+ <section class="card" style="grid-column:1/-1"><h2>Últimos eventos na página</h2><table><thead><tr><th>quando</th><th>evento</th><th>anúncio</th><th>dispositivo</th></tr></thead><tbody id="eventos"></tbody></table></section>
+</main>
+<script>
+const URL_='https://rlrxeegnwjsmxwzoytiz.supabase.co/rest/v1/rpc/';
+const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJscnhlZWdud2pzbXh3em95dGl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzOTcxMDEsImV4cCI6MjA4OTk3MzEwMX0.jWsEO2sx5Iu5NxIQt5TXPCKzqsBqRngVcE5aBVFxWgw';
+const TOKEN=(location.hash.match(/k=([a-f0-9]+)/)||[])[1]||localStorage.getItem('an_k')||'';
+if(TOKEN) try{localStorage.setItem('an_k',TOKEN)}catch(e){}
+let janela='hoje', dados=null;
+const PRECO=69.90, CPA_EMPATE=64, CPA_ESCALA=34.95;
+const fmt=n=>Number(n||0).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pct=(a,b)=>b?Math.round(a/b*1000)/10+'%':'–';
+const hora=ts=>new Date(ts).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+async function rpc(fn,body){const r=await fetch(URL_+fn,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});if(!r.ok)throw new Error(fn+' '+r.status+' '+await r.text());const t=await r.text();return t?JSON.parse(t):null}
+function render(){
+  const j=dados.janelas[janela]||{}; const f=document.getElementById('funil');
+  const etapas=[['Visitas',j.visitas,null],['Viu a oferta',j.view_content,j.visitas],['Clicou no pacote',j.add_to_cart,j.visitas],['Foi ao checkout',j.initiate_checkout,j.visitas],['Cobrança gerada',j.cobrancas_geradas,j.initiate_checkout],['Compras pagas',j.compras,j.cobrancas_geradas],['Com bump',j.compras_com_bump,j.compras],['Reembolsos',j.reembolsos,j.compras]];
+  f.innerHTML=etapas.map(([n,v,b])=>`<div class="st"><span>${n}</span><b>${v??0}</b><i>${b!=null?pct(v,b):'&nbsp;'}</i></div>`).join('');
+  const gasto=+j.gasto||0, compras=+j.compras||0, receita=+j.receita||0;
+  const cpa=compras?gasto/compras:null; const roas=gasto?receita/gasto:null;
+  document.getElementById('kpi').innerHTML=`<div><span>Receita</span><b>R$ ${fmt(receita)}</b></div><div><span>Gasto (digitado)</span><b>R$ ${fmt(gasto)}</b></div><div><span>Resultado</span><b style="color:${receita-gasto>=0?'var(--ok)':'var(--bad)'}">R$ ${fmt(receita-gasto)}</b></div><div><span>CPA</span><b>${cpa!=null?'R$ '+fmt(cpa):'–'}</b></div><div><span>ROAS</span><b>${roas!=null?roas.toFixed(2)+'x':'–'}</b></div><div><span>Ticket médio</span><b>${compras?'R$ '+fmt(receita/compras):'–'}</b></div>`;
+  const ic=+j.initiate_checkout||0; let g=[];
+  if(gasto>=35&&ic===0) g.push('<span class="alert">⚠ R$ 35+ gastos e nenhum início de checkout: regra manda pausar o anúncio pior.</span>');
+  if(gasto>=105&&compras===0) g.push('<span class="alert">⚠ R$ 105+ gastos sem compra: gate de corte do conjunto.</span>');
+  if(cpa!=null) g.push(cpa<=CPA_ESCALA?'<span style="color:var(--ok)">CPA abaixo de R$ 34,95: zona de escala (+20% a cada 3 dias).</span>':cpa<=CPA_EMPATE?'CPA entre empate e escala: segura e observa.':'<span class="alert">CPA acima do empate (R$ 64).</span>');
+  document.getElementById('gates').innerHTML='<b>Gates do plano R$ 320:</b> '+(g.length?g.join(' '):'sem alerta. Empate = 5 vendas só front, 4 com bumps.');
+  document.getElementById('saude').innerHTML=(dados.saude||[]).map(s=>`<tr><td><span class="dot ${s.ok?'ok':'bad'}"></span>${s.alvo}</td><td class="n">HTTP ${s.http}</td><td class="n">${s.ms} ms</td><td class="n">${hora(s.ts)}</td></tr>`).join('')||'<tr><td>sem checagem ainda</td></tr>';
+  document.getElementById('anuncios').innerHTML=(dados.por_anuncio||[]).map(a=>`<tr><td>${a.anuncio}</td><td class="n">${a.visitas}</td><td class="n">${a.ic}</td><td class="n">${a.compras}</td><td class="n">${pct(a.ic,a.visitas)}</td></tr>`).join('')||'<tr><td colspan=5>nenhuma visita com utm ainda</td></tr>';
+  document.getElementById('pedidos').innerHTML=(dados.ultimos_pedidos||[]).map(p=>`<tr><td>${hora(p.ts)}</td><td>${p.evento}</td><td>${p.metodo||''}</td><td class="n">${p.valor!=null?'R$ '+fmt(p.valor):''}</td><td>${p.utm_content||''}</td></tr>`).join('')||'<tr><td colspan=5>nenhum pedido ainda</td></tr>';
+  document.getElementById('eventos').innerHTML=(dados.ultimos_eventos||[]).map(e=>`<tr><td>${hora(e.ts)}</td><td>${e.evento}</td><td>${e.utm_content||''}</td><td>${e.dispositivo||''}</td></tr>`).join('');
+  document.getElementById('status').textContent='atualizado '+new Date(dados.gerado_em).toLocaleTimeString('pt-BR')+' · janela: '+janela;
+}
+async function carregar(){ try{ dados=await rpc('an_painel',{p_token:TOKEN}); document.getElementById('app').hidden=false; document.getElementById('erro').hidden=true; render(); }catch(e){ document.getElementById('erro').hidden=false; document.getElementById('erro').textContent='Sem acesso: '+e.message+' — abra o painel com o link que tem a chave (#k=…).'; } }
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));b.classList.add('on');janela=b.dataset.j;render();});
+document.getElementById('salvar').onclick=async()=>{ const v=parseFloat(document.getElementById('gasto').value.replace(',','.')); if(isNaN(v))return; const dia=new Date().toLocaleDateString('sv-SE',{timeZone:'America/Sao_Paulo'}); try{ await rpc('an_gasto',{p_token:TOKEN,p_dia:dia,p_gasto:v}); document.getElementById('gastoMsg').textContent='gravado'; carregar(); }catch(e){ document.getElementById('gastoMsg').textContent='erro'; } };
+carregar(); setInterval(carregar,10000);
+</script></body></html>

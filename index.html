@@ -197,6 +197,32 @@ if(window.__PIXEL_ID && window.__PIXEL_ID!=='3699249533558735'){
 }
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3699249533558735&ev=PageView&noscript=1"/></noscript>
+
+<script>
+/* Telemetria própria (Supabase) — roda em paralelo ao pixel; não bloqueia nada */
+(function(){
+  var URL='https://rlrxeegnwjsmxwzoytiz.supabase.co/rest/v1/rpc/an_evento';
+  var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJscnhlZWdud2pzbXh3em95dGl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzOTcxMDEsImV4cCI6MjA4OTk3MzEwMX0.jWsEO2sx5Iu5NxIQt5TXPCKzqsBqRngVcE5aBVFxWgw';
+  var q=new URLSearchParams(location.search); var sid;
+  try{ sid=sessionStorage.getItem('an_sid'); if(!sid){ sid=Date.now().toString(36)+Math.random().toString(36).slice(2,8); sessionStorage.setItem('an_sid',sid);} }catch(e){ sid='s'+Date.now().toString(36); }
+  var base={sessao:sid,pagina:location.pathname,ref:(document.referrer||'').slice(0,200),utm_source:q.get('utm_source'),utm_medium:q.get('utm_medium'),utm_campaign:q.get('utm_campaign'),utm_content:q.get('utm_content'),utm_term:q.get('utm_term'),dispositivo:(/Mobi|Android/i.test(navigator.userAgent)?'mobile':'desktop'),largura:window.innerWidth};
+  var enviados={};
+  function an(evento,extra,valor){
+    if(evento!=='heartbeat' && enviados[evento]) return; enviados[evento]=1;
+    var body=JSON.stringify({p:Object.assign({},base,{evento:evento,valor:valor||null,extra:extra||{}})});
+    try{ if(navigator.sendBeacon){ var b=new Blob([body],{type:'application/json'}); /* sendBeacon não manda header apikey: usar fetch keepalive */ }
+      fetch(URL,{method:'POST',keepalive:true,headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:body}).catch(function(){});
+    }catch(e){}
+  }
+  window.__an=an;
+  an('page_view');
+  setTimeout(function(){ an('view_content'); },3000);
+  var marks={50:0,90:0};
+  window.addEventListener('scroll',function(){ var h=document.documentElement; var pct=(h.scrollTop+window.innerHeight)/h.scrollHeight*100; if(pct>=50&&!marks[50]){marks[50]=1;an('scroll_50');} if(pct>=90&&!marks[90]){marks[90]=1;an('scroll_90');} },{passive:true});
+  var t0=Date.now(); document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden'){ enviados['tempo_na_pagina']=0; an('tempo_na_pagina',{segundos:Math.round((Date.now()-t0)/1000)}); } });
+})();
+</script>
+
 </head>
 <body>
 
@@ -526,7 +552,7 @@ if(window.__PIXEL_ID && window.__PIXEL_ID!=='3699249533558735'){
       o.addEventListener('click',function(){
         document.querySelectorAll('.offer').forEach(function(x){x.classList.remove('sel')});
         document.querySelectorAll('.offer[data-p="'+o.dataset.p+'"]').forEach(function(x){x.classList.add('sel')});
-        if(window.fbq) fbq('track','AddToCart',{value:parseFloat(o.dataset.p.replace(',','.')),currency:'BRL',content_name:o.dataset.n});
+        if(window.fbq) (window.__an&&__an('add_to_cart')), fbq('track','AddToCart',{value:parseFloat(o.dataset.p.replace(',','.')),currency:'BRL',content_name:o.dataset.n});
       });
     });
   }
@@ -537,7 +563,7 @@ if(window.__PIXEL_ID && window.__PIXEL_ID!=='3699249533558735'){
     b.addEventListener('click',function(){
       var sel=document.querySelector('.offer.sel');
       var p=sel?sel.dataset.p:"69,90";
-      var eid='ic_'+Date.now()+'_'+Math.random().toString(36).slice(2,8); try{sessionStorage.setItem('an_eid',eid)}catch(e){} if(window.fbq) fbq('track','InitiateCheckout',{value:parseFloat(p.replace(',','.')),currency:'BRL',content_ids:['AN-EBOOK'],content_type:'product'},{eventID:eid});
+      var eid='ic_'+Date.now()+'_'+Math.random().toString(36).slice(2,8); try{sessionStorage.setItem('an_eid',eid)}catch(e){} if(window.__an) __an('initiate_checkout',{},69.90); if(window.fbq) fbq('track','InitiateCheckout',{value:parseFloat(p.replace(',','.')),currency:'BRL',content_ids:['AN-EBOOK'],content_type:'product'},{eventID:eid});
       var url=CHECKOUT[p]; if(url) location.href=url+'?utm_source=meta&utm_medium=cpc&utm_campaign=AN-AQ-2026-09';
     });
   });
