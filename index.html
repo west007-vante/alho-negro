@@ -1,601 +1,208 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Alho Negro em Casa — o método completo dos 40 dias</title>
-<meta name="description" content="O passo a passo para transformar alho comum em alho negro na sua cozinha. Com a conta, os erros e a ciência de verdade.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{
-  --verde:#0f9d63; --verde-esc:#0c3b2e; --verde-cl:#e7f6ef; --cta:#16a34a; --cta2:#39b85e;
-  --vermelho:#e2593a; --teal:#0d7a63; --bg:#f2faf6; --texto:#374b43; --cinza:#7c8b84;
-  --borda:#d8ece2; --radius:14px; --ouro:#b8862a;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Poppins',-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-     background:var(--bg);color:var(--texto);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4{font-family:'DM Serif Display',Georgia,serif;font-weight:400;line-height:1.15;color:var(--verde-esc)}
-h1{font-size:clamp(24px,5.2vw,38px)}
-h2{font-size:clamp(23px,4.4vw,33px);margin-bottom:14px}
-h3{font-size:20px}h4{font-size:17px}
-p{margin-bottom:14px}
-.wrap{max-width:720px;margin:0 auto;padding:0 20px}
-section{padding:50px 0}
-.sec-white{background:#fff}
-.center{text-align:center}
-.green{color:var(--verde)}
-.small{font-size:13px;color:var(--cinza);line-height:1.5}
-.eyebrow{font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;
-         color:var(--verde);margin-bottom:12px}
-img{max-width:100%;display:block;border-radius:var(--radius)}
-
-/* barra topo */
-.track{background:var(--verde-esc);color:#cfeadd;padding:10px 0;font-size:12px;text-align:center;
-       letter-spacing:.05em}
-.track span{margin:0 12px;display:inline-block;white-space:nowrap}
-
-/* HERO */
-.hero{background:linear-gradient(180deg,#fff 0%,var(--bg) 100%);padding:26px 0 40px}
-.hero h1{margin:8px 0 12px}
-.hero .sub{font-size:16px;color:var(--texto);margin-bottom:20px}
-.pi{width:100%;max-width:230px;margin:0 auto 16px;border-radius:8px;box-shadow:0 10px 30px rgba(12,59,46,.18);border:1px solid var(--borda)}
-@media(min-width:640px){.pi{max-width:270px}}
-.stars{color:var(--ouro);letter-spacing:2px;font-size:15px}
-.ratingline{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;margin-bottom:18px;flex-wrap:wrap}
-
-/* OFERTA — cards com seleção */
-.offer{background:#fff;border:2px solid var(--borda);border-radius:var(--radius);padding:15px 16px;
-       margin-bottom:11px;display:flex;align-items:center;gap:13px;cursor:pointer;position:relative;
-       transition:border-color .15s,box-shadow .15s;text-align:left}
-.offer:hover{border-color:var(--cta2)}
-.offer.sel{border-color:var(--cta);box-shadow:0 3px 16px rgba(22,163,74,.16);background:#f7fdf9}
-.radio{width:21px;height:21px;border:2px solid var(--borda);border-radius:50%;flex-shrink:0;position:relative}
-.offer.sel .radio{border-color:var(--cta)}
-.offer.sel .radio:after{content:"";position:absolute;inset:4px;background:var(--cta);border-radius:50%}
-.offer-body{flex:1;min-width:0}
-.offer-title{font-weight:600;font-size:15.5px;color:var(--verde-esc);line-height:1.3}
-.offer-eco{font-size:12.5px;color:var(--cinza);margin-top:2px}
-.offer-price{text-align:right;flex-shrink:0}
-.offer-old{font-size:12.5px;color:var(--cinza);text-decoration:line-through;display:block}
-.offer-new{font-size:21px;font-weight:700;color:var(--verde-esc);letter-spacing:-.02em}
-.offer-tag{position:absolute;top:-10px;left:14px;background:var(--cta);color:#fff;font-size:10.5px;
-           font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.05em}
-.offer-tag.alt{background:var(--ouro)}
-.cta{display:block;width:100%;background:linear-gradient(180deg,var(--cta2),var(--cta));color:#fff;
-     border:0;font-family:inherit;font-size:17px;font-weight:600;padding:17px;border-radius:var(--radius);
-     cursor:pointer;letter-spacing:.02em;box-shadow:0 4px 14px rgba(22,163,74,.3);margin-top:6px}
-.cta:hover{filter:brightness(1.06)}
-.seguro{font-size:12.5px;color:var(--cinza);text-align:center;margin-top:11px}
-
-/* CHOQUE */
-.shock-sec{background:var(--verde-esc);color:#cfeadd}
-.shock-sec h2{color:#fff}
-.shock-sec .eyebrow{color:#7fdca6}
-.shock-sec .small{color:#bcd8cb}
-
-/* REVELACAO */
-.reveal-sec{background:var(--verde-esc);color:#cfeadd;text-align:center}
-.reveal-sec h2{color:#fff}
-.bignum{font-family:'DM Serif Display',Georgia,serif;font-size:clamp(52px,13vw,86px);color:#7cffb0;
-        line-height:1;margin-bottom:6px}
-
-/* QUIZ */
-.chk{background:#fff;border:1px solid var(--borda);border-radius:var(--radius);padding:14px 16px;
-     margin-bottom:9px;cursor:pointer;display:flex;gap:12px;align-items:flex-start;transition:.15s}
-.chk:hover{border-color:var(--verde)}
-.chk.on{border-color:var(--verde);background:var(--verde-cl)}
-.ck{width:21px;height:21px;border:2px solid var(--borda);border-radius:6px;flex-shrink:0;
-    position:relative;margin-top:1px}
-.chk.on .ck{background:var(--verde);border-color:var(--verde)}
-.chk.on .ck:after{content:"✓";position:absolute;inset:0;color:#fff;font-size:14px;font-weight:700;
-                  display:flex;align-items:center;justify-content:center}
-.chk-txt{flex:1}
-.sname{font-weight:600;font-size:15px;color:var(--verde-esc);line-height:1.35}
-.sexp{font-size:13.5px;color:var(--cinza);margin-top:3px;line-height:1.45}
-.quizres{background:var(--verde-esc);color:#cfeadd;border-radius:var(--radius);padding:20px;
-         margin-top:16px;text-align:center}
-.quizres b{color:#7cffb0;font-size:19px}
-
-/* TABELA DE DESCARTE */
-.box{background:#fff;border:1px solid var(--borda);border-radius:var(--radius);padding:18px;margin-bottom:12px}
-.box.x{border-left:3px solid var(--vermelho);background:#fdeeeb}
-.box.v{border-left:3px solid var(--cta);background:#f2faf6}
-.box h4{margin-bottom:5px}
-.box p{margin:0;font-size:14.5px}
-
-/* 3 COMPOSTOS / 3 PASSOS */
-.ben{background:#fff;border:1px solid var(--borda);border-radius:var(--radius);padding:20px;
-     margin-bottom:12px;text-align:center}
-.ben .num{width:38px;height:38px;background:var(--verde-cl);color:var(--verde);border-radius:50%;
-          display:flex;align-items:center;justify-content:center;font-weight:700;font-size:17px;
-          margin:0 auto 11px}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:640px){.grid3,.grid2{grid-template-columns:1fr}}
-
-/* CURVA */
-.curve{display:flex;align-items:flex-end;gap:6px;height:160px;margin:30px 0 34px}
-.bar{flex:1;background:linear-gradient(180deg,var(--verde),var(--teal));border-radius:5px 5px 0 0;
-     position:relative;min-height:6px}
-.bar.peak{background:linear-gradient(180deg,#7cffb0,var(--verde))}
-.bar span{position:absolute;top:-20px;left:0;right:0;text-align:center;font-size:11.5px;font-weight:600}
-.bar em{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-size:11px;
-        color:var(--cinza);font-style:normal}
-
-/* COMPARATIVO */
-.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin:24px 0}
-.vsbox{background:#fff;border:1px solid var(--borda);border-radius:var(--radius);padding:20px 16px;text-align:center}
-.vsbox.bad{border-color:#f3c4b8;background:#fdeeeb}
-.vsbox.good{border-color:#a9dfc2;background:#f2faf6}
-.vsbox .lbl{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--cinza);margin-bottom:8px}
-.vsbox .val{font-family:'DM Serif Display',serif;font-size:29px;line-height:1.1;color:var(--verde-esc)}
-.vsbox.bad .val{color:var(--vermelho)}
-.vsbox.good .val{color:var(--verde)}
-.vsbox .unit{font-size:12.5px;color:var(--cinza);margin-top:5px}
-.vsmid{font-size:12px;color:var(--cinza);letter-spacing:.08em;text-align:center}
-@media(max-width:560px){.vs{grid-template-columns:1fr}}
-
-/* CALCULADORA */
-.calc{background:#fff;border:1px solid var(--borda);border-radius:var(--radius);padding:22px}
-.calc label{display:block;font-size:13.5px;font-weight:600;margin-bottom:9px;color:var(--verde-esc)}
-.calc input[type=range]{width:100%;accent-color:var(--verde)}
-.calcrow{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;
-         border-bottom:1px solid var(--borda);font-size:14.5px}
-.calcrow:last-of-type{border-bottom:0;padding-top:14px}
-.calcrow b{font-size:21px;font-variant-numeric:tabular-nums;color:var(--verde-esc)}
-.calcrow.eco b{color:var(--verde)}
-
-/* SUMARIO DO LIVRO */
-.capitulo{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--borda);align-items:flex-start}
-.capitulo:last-child{border-bottom:0}
-.capitulo .n{font-family:'DM Serif Display',serif;font-size:21px;color:var(--verde);
-             min-width:32px;line-height:1.1}
-.capitulo .t{font-size:14.8px;line-height:1.45}
-.capitulo .t b{color:var(--verde-esc);font-weight:600}
-
-/* GARANTIA */
-.garantia{background:var(--verde-cl);border:2px dashed var(--verde);border-radius:var(--radius);
-          padding:26px;text-align:center}
-.selo{width:80px;height:80px;background:var(--verde);color:#fff;border-radius:50%;margin:0 auto 14px;
-      display:flex;flex-direction:column;align-items:center;justify-content:center;
-      font-family:'DM Serif Display',serif;line-height:1}
-.selo b{font-size:29px}.selo span{font-size:10.5px;letter-spacing:.08em}
-
-/* FAQ */
-.faqitem{background:#fff;border:1px solid var(--borda);border-radius:var(--radius);margin-bottom:9px;overflow:hidden}
-.faqitem .q{padding:16px 18px;font-weight:600;font-size:15.5px;cursor:pointer;display:flex;
-            justify-content:space-between;gap:12px;color:var(--verde-esc);list-style:none}
-.faqitem .q::-webkit-details-marker{display:none}
-.faqitem .q:after{content:"+";color:var(--verde);font-size:21px;line-height:1;flex-shrink:0}
-.faqitem[open] .q:after{content:"–"}
-.faqitem .a{padding:0 18px 16px;font-size:14.5px;color:var(--texto)}
-
-/* FINAL */
-.final{background:var(--verde-esc);color:#cfeadd;text-align:center}
-.final h2{color:#fff;margin-bottom:16px}
-.final .cta{max-width:420px;margin:22px auto 10px}
-
-footer{background:#0a2f24;color:#8fb9a8;padding:32px 0;font-size:12.5px;line-height:1.6}
-footer p{margin-bottom:8px}
-</style>
-<!-- Meta Pixel — ID preenchido quando o conjunto de dados for criado -->
-<script>
-window.__PIXEL_ID='3699249533558735';
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-if(window.__PIXEL_ID){
-  fbq('init', window.__PIXEL_ID);
-  fbq('track', 'PageView');
-  fbq('track', 'ViewContent', {content_name:'Alho Negro em Casa', content_ids:['AN-EBOOK'], content_type:'product', value:69.90, currency:'BRL'});
-}
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3699249533558735&ev=PageView&noscript=1"/></noscript>
-
-<script>
-/* Telemetria própria (Supabase) — roda em paralelo ao pixel; não bloqueia nada */
-(function(){
-  var URL='https://rlrxeegnwjsmxwzoytiz.supabase.co/rest/v1/rpc/an_evento';
-  var KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJscnhlZWdud2pzbXh3em95dGl6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQzOTcxMDEsImV4cCI6MjA4OTk3MzEwMX0.jWsEO2sx5Iu5NxIQt5TXPCKzqsBqRngVcE5aBVFxWgw';
-  var q=new URLSearchParams(location.search); var sid;
-  try{ sid=sessionStorage.getItem('an_sid'); if(!sid){ sid=Date.now().toString(36)+Math.random().toString(36).slice(2,8); sessionStorage.setItem('an_sid',sid);} }catch(e){ sid='s'+Date.now().toString(36); }
-  var base={sessao:sid,pagina:location.pathname,ref:(document.referrer||'').slice(0,200),utm_source:q.get('utm_source'),utm_medium:q.get('utm_medium'),utm_campaign:q.get('utm_campaign'),utm_content:q.get('utm_content'),utm_term:q.get('utm_term'),dispositivo:(/Mobi|Android/i.test(navigator.userAgent)?'mobile':'desktop'),largura:window.innerWidth};
-  var enviados={};
-  function an(evento,extra,valor){
-    if(evento!=='heartbeat' && enviados[evento]) return; enviados[evento]=1;
-    var body=JSON.stringify({p:Object.assign({},base,{evento:evento,valor:valor||null,extra:extra||{}})});
-    try{ if(navigator.sendBeacon){ var b=new Blob([body],{type:'application/json'}); /* sendBeacon não manda header apikey: usar fetch keepalive */ }
-      fetch(URL,{method:'POST',keepalive:true,headers:{'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json'},body:body}).catch(function(){});
-    }catch(e){}
-  }
-  window.__an=an;
-  an('page_view');
-  setTimeout(function(){ an('view_content'); },3000);
-  var marks={50:0,90:0};
-  window.addEventListener('scroll',function(){ var h=document.documentElement; var pct=(h.scrollTop+window.innerHeight)/h.scrollHeight*100; if(pct>=50&&!marks[50]){marks[50]=1;an('scroll_50');} if(pct>=90&&!marks[90]){marks[90]=1;an('scroll_90');} },{passive:true});
-  var t0=Date.now(); document.addEventListener('visibilitychange',function(){ if(document.visibilityState==='hidden'){ enviados['tempo_na_pagina']=0; an('tempo_na_pagina',{segundos:Math.round((Date.now()-t0)/1000)}); } });
-})();
-</script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Método 72 + 40 — Alho Negro Sem Erro</title>
+  <meta name="description" content="Teste sua panela em 72 horas e siga um mapa prático de 40 dias para fazer alho negro em casa sem perder o lote.">
+  <meta name="theme-color" content="#0b0b0a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    window.__PIXEL_ID = '3699249533558735';
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', window.__PIXEL_ID);
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {
+      content_name: 'Método 72 + 40 — Alho Negro Sem Erro',
+      content_ids: ['AN-METODO-72-40'],
+      content_type: 'product',
+      value: 37.90,
+      currency: 'BRL'
+    });
+  </script>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3699249533558735&ev=PageView&noscript=1" alt=""></noscript>
 </head>
 <body>
+  <header class="topbar">
+    <a class="brand" href="#inicio" aria-label="Método 72 + 40 — início">
+      <span class="brand-mark">72</span><span class="brand-cross">+</span><span class="brand-mark">40</span>
+    </a>
+    <div class="top-proof"><span></span> Guia digital · acesso imediato</div>
+    <a class="top-cta js-checkout" href="https://pay.cakto.com.br/nifwe6v_1089960">Quero começar</a>
+  </header>
 
-<!-- [1] barra de confiança -->
-<div class="track">
-  <span>✓ Acesso imediato</span><span>✓ Garantia de 7 dias</span><span>✓ Pagamento seguro</span>
-</div>
-
-<!-- [2] HERO -->
-<section class="hero">
-  <div class="wrap center">
-    <div class="eyebrow">Método caseiro · 40 dias</div>
-    <h1>Cem gramas de alho negro custam até R$ 139.<br>O alho custa R$ 19,90 o quilo.</h1>
-    <p class="sub">A diferença entre os dois é tempo e temperatura.<br>As duas coisas já estão na sua cozinha.</p>
-    <img class="pi" src="img/capa.webp" alt="Alho Negro em Casa — o método completo dos 40 dias">
-    <div class="ratingline"><span class="stars">★★★★★</span><span>11 capítulos · 53 tabelas · 4 anexos</span></div>
-
-    <div id="oferta">
-      <div class="offer sel" data-p="69,90" data-n="Método completo">
-        <div class="radio"></div>
-        <div class="offer-body">
-          <div class="offer-title">O método completo</div>
-          <div class="offer-eco">O livro inteiro, 11 capítulos · PDF</div>
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><i></i> Método prático para fazer em casa</div>
+        <h1>Antes de esperar <em>40 dias</em>, descubra em <strong>72 horas</strong> se a sua panela está pronta.</h1>
+        <p class="hero-lead">Teste o aparelho sem arriscar o primeiro lote. Depois, siga o mapa dia a dia e corrija os cinco erros que fazem o alho apodrecer, ressecar ou amargar.</p>
+        <div class="hero-actions">
+          <a class="button button-primary js-checkout" href="https://pay.cakto.com.br/nifwe6v_1089960">
+            <span>Quero o Método 72 + 40</span><b>R$ 37,90</b>
+          </a>
+          <div class="microcopy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 3v6c0 5-3.4 9.7-8 11-4.6-1.3-8-6-8-11V5l8-3zm-1 13.2l5-5-1.4-1.4-3.6 3.6-1.6-1.6L8 12.2l3 3z"/></svg> Compra segura · 7 dias de garantia</div>
         </div>
-        <div class="offer-price"><span class="offer-new">R$ 69,90</span></div>
+        <div class="digital-note">
+          <b>100% digital.</b> Você recebe o guia em PDF e as fichas para imprimir. Nenhum produto físico será enviado.
+        </div>
       </div>
 
-      <div class="offer" data-p="89,90" data-n="Método + bancada">
-        <span class="offer-tag">Mais escolhido</span>
-        <div class="radio"></div>
-        <div class="offer-body">
-          <div class="offer-title">Método + kit de bancada</div>
-          <div class="offer-eco">Ficha de medição, diário de lote e lista de compras, prontos para imprimir</div>
-        </div>
-        <div class="offer-price"><span class="offer-old">R$ 109,80</span><span class="offer-new">R$ 89,90</span></div>
+      <div class="hero-stage reveal" aria-label="Alho negro verdadeiro, panela elétrica e termômetro">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <figure class="hero-photo">
+          <img src="assets/alho-negro-hero.webp" width="1200" height="1429" alt="Bulbo de alho e alho negro com dentes bem definidos ao lado de uma panela elétrica e termômetro">
+          <figcaption><span>Resultado real</span> Dentes escuros, macios e adocicados</figcaption>
+        </figure>
+        <div class="data-card data-a"><small>FASE ZERO</small><strong>72 h</strong><span>teste da panela</span></div>
+        <div class="data-card data-b"><small>PROCESSO</small><strong>40 dias</strong><span>mapa de execução</span></div>
       </div>
 
-      <div class="offer" data-p="129,90" data-n="Método + bancada + vender">
-        <span class="offer-tag alt">Para vender</span>
-        <div class="radio"></div>
-        <div class="offer-body">
-          <div class="offer-title">Tudo + planilha de precificação</div>
-          <div class="offer-eco">Cálculo de custo, margem e ponto de equilíbrio para quem vai vender o que fizer</div>
-        </div>
-        <div class="offer-price"><span class="offer-old">R$ 169,70</span><span class="offer-new">R$ 129,90</span></div>
+      <div class="hero-proof reveal">
+        <span>11 capítulos</span><i></i><span>53 tabelas</span><i></i><span>4 anexos</span><i></i><span>6 receitas</span>
       </div>
+    </section>
 
-      <button class="cta js-buy">Quero o método completo →</button>
-      <p class="seguro">🔒 Pagamento seguro · acesso enviado por e-mail na hora</p>
-    </div>
+    <section class="scroll-lab" aria-label="Jornada interativa do método">
+      <div class="scroll-sticky">
+        <div class="scroll-copy">
+          <div class="eyebrow"><i></i> Arraste para entender o método</div>
+          <h2><span id="scroll-day">72 h</span><br><em id="scroll-title">Valide a panela</em></h2>
+          <p id="scroll-text">Observe temperatura, estabilidade e vedação antes de colocar o primeiro alho.</p>
+          <div class="scroll-meter"><i id="scroll-meter-fill"></i></div>
+        </div>
+        <div class="scroll-object" id="scroll-object">
+          <div class="object-glow"></div>
+          <div class="object-card object-back"><span>40</span><small>dias acompanhados</small></div>
+          <div class="object-card object-mid"><span>5</span><small>erros diagnosticados</small></div>
+          <div class="object-card object-front">
+            <img src="assets/alho-negro-hero.webp" alt="Alho negro verdadeiro em uma composição tridimensional">
+            <div><b>Método 72 + 40</b><small>teste · acompanhe · corrija</small></div>
+          </div>
+        </div>
+        <div class="scroll-hint">deslize <span>↓</span></div>
+      </div>
+    </section>
+
+    <section class="truth section-pad">
+      <div class="section-heading reveal">
+        <div class="eyebrow"><i></i> O risco que ninguém mostra</div>
+        <h2>O problema não é esperar.<br><em>É descobrir tarde demais que algo estava errado.</em></h2>
+      </div>
+      <div class="truth-grid">
+        <article class="truth-card reveal">
+          <span class="card-num">01</span>
+          <h3>Temperatura errada</h3>
+          <p>A panela parece aquecer normalmente, mas pode trabalhar fora da faixa necessária durante dias.</p>
+        </article>
+        <article class="truth-card reveal">
+          <span class="card-num">02</span>
+          <h3>Umidade sem controle</h3>
+          <p>O alho pode ressecar, azedar ou criar mofo quando o vapor e a vedação não estão equilibrados.</p>
+        </article>
+        <article class="truth-card reveal">
+          <span class="card-num">03</span>
+          <h3>Correção no escuro</h3>
+          <p>Sem sinais objetivos, cada abertura da panela vira um palpite — e cada palpite altera o processo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="mechanism section-pad">
+      <div class="mechanism-visual reveal">
+        <div class="machine">
+          <img src="assets/panela.webp" alt="Panela elétrica usada no processo de alho negro">
+          <div class="scanline"></div>
+          <div class="temp-readout"><small>LEITURA</small><b>°C</b><span>medir, registrar, decidir</span></div>
+        </div>
+      </div>
+      <div class="mechanism-copy reveal">
+        <div class="eyebrow"><i></i> Um mecanismo, não uma aposta</div>
+        <h2>Primeiro você valida.<br>Depois você produz.</h2>
+        <ol class="steps">
+          <li><b>72 horas</b><span>Meça sua panela vazia e entenda como ela realmente se comporta.</span></li>
+          <li><b>Dia 0 ao 40</b><span>Siga o mapa de marcos, sinais e decisões sem depender de memória.</span></li>
+          <li><b>Diagnóstico</b><span>Reconheça os cinco erros e saiba o que ajustar antes de perder o lote.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="stack section-pad" id="metodo">
+      <div class="section-heading reveal">
+        <div class="eyebrow"><i></i> Tudo o que você recebe</div>
+        <h2>Não é “só um PDF”.<br><em>É o seu sistema de execução.</em></h2>
+      </div>
+      <div class="stack-shell reveal">
+        <div class="stack-book">
+          <img src="assets/capa-guia.webp" alt="Capa do guia Alho Negro em Casa">
+          <div class="book-shadow"></div>
+        </div>
+        <div class="stack-list">
+          <div><span>01</span><p><b>Protocolo das 72 horas</b><small>para testar a panela antes do primeiro lote</small></p></div>
+          <div><span>02</span><p><b>Mapa do dia 0 ao 40</b><small>com sinais e ações para cada fase</small></p></div>
+          <div><span>03</span><p><b>Diagnóstico dos 5 erros</b><small>apodrecer, ressecar, amargar e mais</small></p></div>
+          <div><span>04</span><p><b>Fichas para imprimir</b><small>medição, diário de lote e lista de compras</small></p></div>
+          <div><span>05</span><p><b>Receitas e uso do alho negro</b><small>seis aplicações depois que o lote ficar pronto</small></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer section-pad" id="oferta">
+      <div class="offer-card reveal">
+        <div class="offer-copy">
+          <div class="eyebrow"><i></i> Acesso imediato</div>
+          <h2>Método 72 + 40<br><em>Alho Negro Sem Erro</em></h2>
+          <p>Guia digital completo + protocolo de teste + mapa de execução + fichas para imprimir.</p>
+          <ul>
+            <li>Entrega por e-mail logo após a confirmação</li>
+            <li>Acesso em celular, computador ou impresso</li>
+            <li>Garantia incondicional de 7 dias</li>
+          </ul>
+        </div>
+        <div class="price-box">
+          <small>Pagamento único</small>
+          <div class="price"><sup>R$</sup><strong>37</strong><span>,90</span></div>
+          <a class="button button-primary js-checkout" href="https://pay.cakto.com.br/nifwe6v_1089960">Começar agora</a>
+          <p>Sem assinatura. Sem envio físico.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq section-pad">
+      <div class="section-heading reveal">
+        <div class="eyebrow"><i></i> Antes de começar</div>
+        <h2>Perguntas honestas.<br><em>Respostas diretas.</em></h2>
+      </div>
+      <div class="faq-list">
+        <details class="reveal"><summary>Vou receber alho, panela ou qualquer produto físico?</summary><p>Não. Esta oferta é um guia 100% digital, com material em PDF e fichas que você pode imprimir em casa.</p></details>
+        <details class="reveal"><summary>Qualquer panela elétrica funciona?</summary><p>Não dá para prometer isso sem medir. É exatamente por isso que o método começa pelo protocolo de 72 horas: ele ajuda você a entender se o seu aparelho mantém o comportamento necessário antes de arriscar o alho.</p></details>
+        <details class="reveal"><summary>Preciso entender de cozinha?</summary><p>Não. O método foi organizado como uma sequência prática de medições, sinais e decisões, inclusive com uma lista dos erros mais comuns.</p></details>
+        <details class="reveal"><summary>Quando recebo o material?</summary><p>O acesso é enviado por e-mail depois da confirmação do pagamento.</p></details>
+        <details class="reveal"><summary>E se eu perceber que não é para mim?</summary><p>Você pode solicitar o reembolso dentro do prazo de 7 dias previsto na oferta.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#inicio"><span class="brand-mark">72</span><span class="brand-cross">+</span><span class="brand-mark">40</span></a>
+    <p>Conteúdo educacional. Os resultados dependem do aparelho, dos ingredientes e da execução de cada pessoa.</p>
+    <p>Pagamento processado em ambiente seguro pela Cakto.</p>
+  </footer>
+
+  <div class="mobile-buy">
+    <div><small>Guia digital</small><b>R$ 37,90</b></div>
+    <a class="js-checkout" href="https://pay.cakto.com.br/nifwe6v_1089960">Quero começar</a>
   </div>
-</section>
 
-<!-- [3] CHOQUE -->
-<section class="shock-sec">
-  <div class="wrap">
-    <div class="eyebrow">O preço que ninguém questiona</div>
-    <h2>É o mesmo alho da sua feira. Só que alguém esperou por você.</h2>
-    <img src="img/prateleira.webp" alt="Prateleira de loja gourmet" style="margin:20px 0">
-    <p>Cem gramas de alho negro em loja gourmet: <b style="color:#fff">R$ 139,00</b>.<br>
-       Um quilo de alho comum no atacadão: <b style="color:#fff">R$ 19,90</b>.</p>
-    <p class="small">Cotações de 06/09/2026. O quilo de alho comum vira cerca de 250 g de alho negro.</p>
-  </div>
-</section>
-
-<!-- [4] REVELAÇÃO -->
-<section class="reveal-sec">
-  <div class="wrap">
-    <div class="eyebrow">A conta que muda tudo</div>
-    <div class="bignum">R$ 16,49</div>
-    <h2>é o que custam 100 g feitos na sua cozinha</h2>
-    <p style="margin-top:14px">Alho, energia e papel-alumínio. Tudo somado, nada escondido.<br>
-       A memória de cálculo inteira está no capítulo 7.</p>
-  </div>
-</section>
-
-<!-- [5] CALCULADORA -->
-<section class="sec-white">
-  <div class="wrap">
-    <div class="eyebrow center">Faça a sua conta</div>
-    <h2 class="center">Quanto isso muda no seu ano</h2>
-    <p class="center" style="margin-bottom:22px">Arraste para o quanto você consumiria por dia.</p>
-    <div class="calc">
-      <label>Consumo diário: <b id="gv" class="green">6</b> g por dia</label>
-      <input type="range" id="g" min="2" max="20" value="6" step="1">
-      <div class="calcrow"><span>Comprando pronto, no ano</span><b id="p1">—</b></div>
-      <div class="calcrow"><span>Fazendo em casa, no ano</span><b id="p2">—</b></div>
-      <div class="calcrow eco"><span>Você deixa de gastar</span><b id="p3">—</b></div>
-    </div>
-    <p class="small center" style="margin-top:14px">Cálculo com o alho negro pronto a R$ 33/100 g, que é o preço mais barato que encontrei, não o mais caro. No feito em casa está incluída a energia.</p>
-  </div>
-</section>
-
-<!-- [6] QUIZ -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow center">Diagnóstico rápido · 30 segundos</div>
-    <h2 class="center">Antes de comprar o primeiro bulbo</h2>
-    <p class="center" style="margin-bottom:20px">Marque o que se aplica a você. Cada item é um capítulo do livro.</p>
-
-    <div class="chk" data-w="1"><div class="ck"></div><div class="chk-txt">
-      <div class="sname">Você já ouviu falar de alho negro mas nunca provou</div>
-      <div class="sexp">O sabor não tem nada de alho: é adocicado, com fundo de tamarindo e balsâmico. Capítulo 9.</div></div></div>
-
-    <div class="chk" data-w="1"><div class="ck"></div><div class="chk-txt">
-      <div class="sname">Você achou que era fermentação</div>
-      <div class="sexp">Não é. Não tem micro-organismo nenhum. Quem trata como fermentação apodrece o lote. Capítulo 1.</div></div></div>
-
-    <div class="chk" data-w="2"><div class="ck"></div><div class="chk-txt">
-      <div class="sname">Você tem panela elétrica de arroz parada no armário</div>
-      <div class="sexp">É o aparelho titular do método. Você provavelmente já tem tudo que precisa. Capítulo 3.</div></div></div>
-
-    <div class="chk" data-w="2"><div class="ck"></div><div class="chk-txt">
-      <div class="sname">Você pensou em usar air fryer ou forno</div>
-      <div class="sexp">Os dois não funcionam, e o livro mostra por quê antes de você perder 40 dias. Capítulo 3.</div></div></div>
-
-    <div class="chk" data-w="3"><div class="ck"></div><div class="chk-txt">
-      <div class="sname">Você não sabia que existe risco de segurança nisso</div>
-      <div class="sexp">Existe, tem nome, e é o capítulo 0 — vem antes de tudo, com o protocolo de medir o aparelho.</div></div></div>
-
-    <div class="chk" data-w="2"><div class="ck"></div><div class="chk-txt">
-      <div class="sname">Você achava que quanto mais preto, melhor</div>
-      <div class="sexp">É o contrário, e há um estudo que mede isso dia a dia. Está logo abaixo. Capítulo 2.</div></div></div>
-
-    <div class="chk" data-w="3"><div class="ck"></div><div class="chk-txt">
-      <div class="sname">Você pensou em vender o que fizer</div>
-      <div class="sexp">Dá, e existe um caminho legal para isso, inclusive produzindo em casa. Capítulo 10.</div></div></div>
-
-    <div class="quizres" id="qres">Marque os itens acima para ver o seu resultado.</div>
-  </div>
-</section>
-
-<!-- [7] O VILÃO -->
-<section class="sec-white">
-  <div class="wrap">
-    <div class="eyebrow">Por que a maioria perde o primeiro lote</div>
-    <h2>O erro não é de receita. É de categoria.</h2>
-    <p>Alho negro <b>não é fermentado</b>. Não tem fermento, não tem salmoura, não tem micro-organismo trabalhando. É calor baixo e constante por muitas semanas.</p>
-    <p>É primo do doce de leite, não do chucrute.</p>
-    <p>Quem trata como fermentação cria as condições erradas e o bulbo apodrece. É o erro número um, e ele custa quarenta dias de espera para descobrir.</p>
-    <img src="img/progressao.webp" alt="Progressão do alho: fresco, intermediário e pronto" style="margin:20px 0">
-    <p class="small">Da esquerda para a direita: dia 0, meio do processo, e o ponto final.</p>
-  </div>
-</section>
-
-<!-- [8] TABELA DE DESCARTE -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow">O que não funciona, e por quê</div>
-    <h2>Quatro caminhos que parecem óbvios e não dão certo</h2>
-    <div class="box x"><h4>✕ Air fryer</h4><p>A temperatura mínima da maioria dos aparelhos é 80 °C, acima da faixa útil. Resseca em vez de escurecer.</p></div>
-    <div class="box x"><h4>✕ Forno comum</h4><p>Não segura temperatura baixa por semanas, e o consumo torna o lote mais caro que comprar pronto.</p></div>
-    <div class="box x"><h4>✕ Comprar o pote pronto</h4><p>Resolve uma vez. Quando acaba, você paga de novo — e quem escolheu o ponto de colheita foi outra pessoa.</p></div>
-    <div class="box x"><h4>✕ Alho cru, achando que é a mesma coisa</h4><p>É outro produto, com outro sabor e outro uso. O livro explica exatamente o que muda.</p></div>
-    <div class="box v"><h4>✓ Panela elétrica de arroz no "manter aquecido"</h4><p>A rota titular. É o que a maioria já tem em casa, e o livro traz o protocolo de medição antes do primeiro bulbo.</p></div>
-  </div>
-</section>
-
-<!-- [9] O MECANISMO -->
-<section class="sec-white">
-  <div class="wrap">
-    <div class="eyebrow">O que acontece lá dentro</div>
-    <h2>Três coisas ao mesmo tempo, e nenhuma delas é fermentar</h2>
-    <img src="img/panela.webp" alt="Panela elétrica de arroz com bulbos de alho" style="margin:18px 0">
-    <div class="grid3">
-      <div class="ben"><div class="num">1</div><h4>Escurecimento</h4><p class="small">A mesma reação que doura o pão e faz o doce de leite. É ela que dá a cor e o sabor.</p></div>
-      <div class="ben"><div class="num">2</div><h4>Açúcares</h4><p class="small">As fibras do alho se quebram em açúcares mais simples. É daí que vem a doçura de tâmara.</p></div>
-      <div class="ben"><div class="num">3</div><h4>Conversão</h4><p class="small">O composto que arde se converte em outro, estável, que não repete e não deixa cheiro.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- [10] A CURVA -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow">O dado que ninguém no varejo mostra</div>
-    <h2>O alho mais preto não é o alho mais rico</h2>
-    <p>Um estudo mediu, dia a dia, o composto que se forma durante o processo, a 70 °C com 80% de umidade.</p>
-    <div class="curve">
-      <div class="bar" style="height:12%"><span>193</span><em>dia 0</em></div>
-      <div class="bar peak" style="height:100%"><span>1.563</span><em>dia 7</em></div>
-      <div class="bar" style="height:51%"><span>802</span><em>dia 14</em></div>
-      <div class="bar" style="height:27%"><span>425</span><em>dia 21</em></div>
-      <div class="bar" style="height:7%"><span>106</span><em>dia 42</em></div>
-    </div>
-    <p class="small">S-alil-cisteína, em mg/kg de peso seco, em alho tailandês.</p>
-    <div class="box v" style="margin-top:20px"><h4>O que isso significa na prática</h4>
-      <p>Ele sobe até o sétimo dia e depois cai. No dia 42 o alho está mais escuro, mais doce e mais bonito — e de volta a quase onde começou nesse composto. Existe uma escolha a fazer, e o capítulo 2 é inteiro sobre ela.</p></div>
-    <p style="margin-top:16px"><b>Quando você compra pronto, quem escolhe o dia é o fabricante. Quando o pote é seu, o ponto é seu.</b></p>
-  </div>
-</section>
-
-<!-- [11] COMPARATIVO -->
-<section class="sec-white">
-  <div class="wrap">
-    <div class="eyebrow center">Lado a lado</div>
-    <h2 class="center">Comprar pronto contra fazer em casa</h2>
-    <div class="vs">
-      <div class="vsbox bad"><div class="lbl">Comprando pronto</div><div class="val">R$ 33 a 139</div><div class="unit">por 100 g · e acaba</div></div>
-      <div class="vsmid">CONTRA</div>
-      <div class="vsbox good"><div class="lbl">Fazendo em casa</div><div class="val">R$ 16,49</div><div class="unit">por 100 g · quantas vezes quiser</div></div>
-    </div>
-    <div class="grid2">
-      <div class="box"><h4>O que você compra ali</h4><p class="small">Um pote. Quando termina, termina. O ponto de colheita foi decidido por outra pessoa, e você não sabe qual foi.</p></div>
-      <div class="box"><h4>O que você compra aqui</h4><p class="small">A capacidade de fazer. Na quantidade que quiser, com o alho que escolher, parando no dia que decidir.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- [12] COMO FAZER -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow center">Simples de verdade</div>
-    <h2 class="center">Trinta segundos de trabalho por lote</h2>
-    <div class="grid3" style="margin-top:22px">
-      <div class="ben"><div class="num">1</div><h4>Meça o aparelho</h4><p class="small">72 horas com termômetro antes do primeiro bulbo. O livro traz a ficha pronta.</p></div>
-      <div class="ben"><div class="num">2</div><h4>Monte e feche</h4><p class="small">Bulbos inteiros, embrulhados, dentro do aparelho. Fecha e não abre.</p></div>
-      <div class="ben"><div class="num">3</div><h4>Espere</h4><p class="small">Quarenta dias. O livro diz o que esperar em cada semana e quando parar.</p></div>
-    </div>
-    <img src="img/kit.webp" alt="O que você precisa: pote, alumínio, termômetro e alho" style="margin:22px 0 0">
-  </div>
-</section>
-
-<!-- [13] O QUE TEM DENTRO -->
-<section class="sec-white">
-  <div class="wrap">
-    <div class="eyebrow center">O método completo</div>
-    <h2 class="center">Onze capítulos, 53 tabelas, quatro anexos</h2>
-    <div style="margin-top:20px">
-      <div class="capitulo"><div class="n">0</div><div class="t"><b>Leia antes de tudo.</b> O risco de segurança que ninguém conta, e o protocolo de medir o seu aparelho por 72 horas.</div></div>
-      <div class="capitulo"><div class="n">1</div><div class="t"><b>O que acontece dentro do pote.</b> Por que não é fermentação, e por que isso decide se dá certo.</div></div>
-      <div class="capitulo"><div class="n">2</div><div class="t"><b>Os dois pontos de colheita.</b> A curva medida dia a dia e a escolha entre sabor e composto.</div></div>
-      <div class="capitulo"><div class="n">3</div><div class="t"><b>Escolha do seu método.</b> Cinco aparelhos comparados com temperatura, dias e consumo. E os dois que não funcionam.</div></div>
-      <div class="capitulo"><div class="n">4</div><div class="t"><b>O passo a passo.</b> Do dia 0 ao dia 40, com o que esperar em cada semana.</div></div>
-      <div class="capitulo"><div class="n">5</div><div class="t"><b>Os cinco erros.</b> Por que apodrece, resseca, amarga ou fica marrom — com a correção de cada um.</div></div>
-      <div class="capitulo"><div class="n">6</div><div class="t"><b>Como saber que ficou pronto.</b> Cor, textura, cheiro e sabor. E quando descartar.</div></div>
-      <div class="capitulo"><div class="n">7</div><div class="t"><b>A conta.</b> Custo por lote, rendimento, amortização do aparelho e a comparação completa.</div></div>
-      <div class="capitulo"><div class="n">8</div><div class="t"><b>O que a ciência sustenta e o que não sustenta.</b> Com os estudos na mão, inclusive os que contrariam o marketing do setor.</div></div>
-      <div class="capitulo"><div class="n">9</div><div class="t"><b>Na cozinha.</b> Como usar, com o que combina, como conservar e por quanto tempo.</div></div>
-      <div class="capitulo"><div class="n">10</div><div class="t"><b>Se você quiser vender.</b> O caminho de regularização, inclusive a via que permite produzir em casa.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- [14] O CAPÍTULO 8 -->
-<section>
-  <div class="wrap">
-    <div class="eyebrow">O capítulo que me deu mais trabalho</div>
-    <h2>O único livro do assunto que diz o que o alho negro NÃO faz</h2>
-    <p>O mercado desse ingrediente promete muito. O capítulo 8 vai na direção contrária: mostra o que os estudos sustentam, o que só foi testado em tubo de ensaio, e o que simplesmente não aconteceu quando mediram em gente.</p>
-    <p>Você vai terminar esse capítulo sabendo exatamente o que este alimento é e o que ele não é.</p>
-    <div class="box v"><h4>Este livro ensina a fazer um alimento</h4>
-      <p>Não é remédio, não trata nada e não promete nada sobre o seu corpo. Quem estiver procurando isso vai achar o livro errado — e o capítulo 8 explica por quê, com as fontes.</p></div>
-    <img src="img/servido.webp" alt="Alho negro servido em fatias de pão" style="margin:20px 0 0">
-  </div>
-</section>
-
-<!-- [15] GARANTIA -->
-<section class="sec-white">
-  <div class="wrap">
-    <div class="garantia">
-      <div class="selo"><b>7</b><span>DIAS</span></div>
-      <h2 style="margin-bottom:10px">Garantia de 7 dias</h2>
-      <p style="margin:0">Leia o livro inteiro. Se não servir para você, escreva para a gente dentro de sete dias e devolvemos o valor. Sem pergunta, sem formulário.</p>
-    </div>
-  </div>
-</section>
-
-<!-- [16] OFERTA FINAL -->
-<section>
-  <div class="wrap center">
-    <div class="eyebrow">Comece hoje</div>
-    <h2>Escolha o seu</h2>
-    <p style="margin-bottom:22px">Um curso do mesmo assunto custa R$ 1.250. Este é o método inteiro, escrito.</p>
-    <div id="oferta2"></div>
-  </div>
-</section>
-
-<!-- [17] FAQ -->
-<section class="sec-white">
-  <div class="wrap">
-    <div class="eyebrow center">Perguntas frequentes</div>
-    <h2 class="center" style="margin-bottom:22px">O que costumam me perguntar</h2>
-    <details class="faqitem"><summary class="q">Isso é remédio ou suplemento?</summary>
-      <div class="a">Não. É um livro de cozinha. Ensina a preparar um alimento e não faz nenhuma afirmação sobre o que ele faria no seu corpo. O capítulo 8 explica exatamente por que não faz, com os estudos citados.</div></details>
-    <details class="faqitem"><summary class="q">Preciso comprar algum aparelho?</summary>
-      <div class="a">Provavelmente não. O método titular usa panela elétrica de arroz, que muita gente já tem parada no armário. Se precisar comprar, sai por volta de R$ 100, uma vez só, e o livro compara cinco aparelhos antes de você gastar.</div></details>
-    <details class="faqitem"><summary class="q">Quanto tempo leva?</summary>
-      <div class="a">Cerca de quarenta dias com o aparelho ligado. O trabalho manual é de minutos: monta, fecha e não abre. O livro explica por que abrir para ver é um dos erros que estragam o lote.</div></details>
-    <details class="faqitem"><summary class="q">É caro manter ligado quarenta dias?</summary>
-      <div class="a">Cerca de R$ 16 de energia por lote, e essa conta já está incluída no custo de R$ 16,49 por 100 g. O capítulo 7 mostra o cálculo completo.</div></details>
-    <details class="faqitem"><summary class="q">Dá para vender o que eu fizer?</summary>
-      <div class="a">Dá, e o capítulo 10 é sobre isso. Para consumo próprio não é exigida licença nenhuma. Para vender existe um caminho de regularização, e há uma via que permite produzir em casa e isenta de taxas.</div></details>
-    <details class="faqitem"><summary class="q">E se eu não conseguir fazer?</summary>
-      <div class="a">O capítulo 5 é inteiro sobre os erros, com a causa e a correção de cada um. E existe a garantia de sete dias.</div></details>
-    <details class="faqitem"><summary class="q">Como recebo?</summary>
-      <div class="a">Por e-mail, logo depois da compra. É um PDF, seu para sempre, sem assinatura e sem mensalidade.</div></details>
-  </div>
-</section>
-
-<!-- [18] FINAL -->
-<section class="final">
-  <div class="wrap">
-    <h2>Todo mundo tem alho em casa. Quase ninguém sabe o que ele vira em quarenta dias.</h2>
-    <p>Você pode continuar pagando R$ 139 pelos cem gramas, ou aprender a fazer numa tarde de leitura.</p>
-    <button class="cta js-buy">Quero o método completo →</button>
-    <p class="small" style="color:#8fb9a8">Garantia de 7 dias · acesso imediato</p>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap center">
-    <p><b style="color:#cfeadd">Alho Negro em Casa</b></p>
-    <p>[NOME DA EMPRESA] · CNPJ [CNPJ] · [EMAIL]</p>
-    <p style="margin-top:14px">Este material é de natureza informativa e culinária. Ensina o preparo doméstico de um alimento e não faz alegação de propriedade funcional ou de saúde. Não substitui orientação de profissional de saúde. Consulte um médico ou nutricionista antes de mudar sua alimentação, especialmente em caso de gestação, amamentação, uso de medicação contínua ou condição de saúde preexistente.</p>
-    <p>O capítulo 0 trata de segurança alimentar e deve ser lido integralmente antes da primeira preparação.</p>
-  </div>
-</footer>
-
-<script>
-(function(){
-  // ---- seleção de oferta
-  var CHECKOUT = { "69,90":"https://pay.cakto.com.br/nifwe6v_1089960", "89,90":"https://pay.cakto.com.br/nifwe6v_1089960", "129,90":"https://pay.cakto.com.br/nifwe6v_1089960" };
-  function bind(root){
-    var offers=root.querySelectorAll('.offer');
-    offers.forEach(function(o){
-      o.addEventListener('click',function(){
-        document.querySelectorAll('.offer').forEach(function(x){x.classList.remove('sel')});
-        document.querySelectorAll('.offer[data-p="'+o.dataset.p+'"]').forEach(function(x){x.classList.add('sel')});
-        if(window.fbq) (window.__an&&__an('add_to_cart')), fbq('track','AddToCart',{value:parseFloat(o.dataset.p.replace(',','.')),currency:'BRL',content_name:o.dataset.n});
-      });
-    });
-  }
-  var o1=document.getElementById('oferta'), o2=document.getElementById('oferta2');
-  if(o1&&o2){ o2.innerHTML=o1.innerHTML; }
-  bind(document);
-  document.querySelectorAll('.js-buy').forEach(function(b){
-    b.addEventListener('click',function(){
-      var sel=document.querySelector('.offer.sel');
-      var p=sel?sel.dataset.p:"69,90";
-      var eid='ic_'+Date.now()+'_'+Math.random().toString(36).slice(2,8); try{sessionStorage.setItem('an_eid',eid)}catch(e){} if(window.__an) __an('initiate_checkout',{},69.90); if(window.fbq) fbq('track','InitiateCheckout',{value:parseFloat(p.replace(',','.')),currency:'BRL',content_ids:['AN-EBOOK'],content_type:'product'},{eventID:eid});
-      var url=CHECKOUT[p]; if(url) location.href=url+'?utm_source=meta&utm_medium=cpc&utm_campaign=AN-AQ-2026-09';
-    });
-  });
-
-  // ---- calculadora
-  var g=document.getElementById('g');
-  if(g){
-    var gv=document.getElementById('gv'),p1=document.getElementById('p1'),
-        p2=document.getElementById('p2'),p3=document.getElementById('p3');
-    var PRONTO=33.00, CASA=16.49;
-    function brl(v){return 'R$ '+v.toLocaleString('pt-BR',{maximumFractionDigits:0});}
-    function calc(){
-      var gr=+g.value, cem=gr*365/100, a=cem*PRONTO, b=cem*CASA;
-      gv.textContent=gr; p1.textContent=brl(a); p2.textContent=brl(b); p3.textContent=brl(a-b);
-    }
-    g.addEventListener('input',calc); calc();
-  }
-
-  // ---- quiz
-  var chks=document.querySelectorAll('.chk'), qres=document.getElementById('qres');
-  chks.forEach(function(c){
-    c.addEventListener('click',function(){
-      c.classList.toggle('on');
-      var n=document.querySelectorAll('.chk.on').length;
-      if(n===0){qres.innerHTML='Marque os itens acima para ver o seu resultado.';}
-      else if(n<=2){qres.innerHTML='<b>'+n+' de 7.</b><br>Você já sabe mais que a maioria. O que falta está nos capítulos que você marcou.';}
-      else if(n<=4){qres.innerHTML='<b>'+n+' de 7.</b><br>Metade do caminho. Cada item marcado é um capítulo inteiro do livro.';}
-      else {qres.innerHTML='<b>'+n+' de 7.</b><br>É exatamente para você que este livro foi escrito.';}
-      if(window.fbq) fbq('trackCustom','QuizInteraction',{marcados:n});
-    });
-  });
-})();
-</script>
+  <script src="app.js"></script>
 </body>
 </html>
